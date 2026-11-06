@@ -46,6 +46,32 @@ meeting-assistant/
 - **spaCy** – Rule-based information extraction (planned)
 - **Ollama** – Local LLM execution (planned)
 
+## Installation
+
+### Prerequisites
+- Python 3.12
+
+### Setup
+
+```bash
+# Clone repository
+git clone https://github.com/lindakadyrova/meeting-assistant.git
+
+# Navigate into project
+cd meeting-assistant
+
+# Create virtual environment
+py -3.12 -m venv .venv
+
+# Activate virtual environment (Windows Git Bash)
+source .venv/Scripts/activate
+
+# Install dependencies
+pip install -r requirements.txt
+```
+
+The virtual environment is stored locally in `.venv/` and is excluded from version control.
+
 ## Project Status
 
 Work in progress – Winter Semester 2026/27.
