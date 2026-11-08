@@ -17,7 +17,14 @@ def transcribe_audio(audio_path: str) -> str:
     output_dir = Path("data/transcripts")
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    output_path = output_dir / f"{Path(audio_path).stem}.txt"
+    base_path = output_dir / f"{Path(audio_path).stem}.txt"
+    output_path = base_path
+
+    counter = 1
+    while output_path.exists():
+        output_path= output_dir / f"{Path(audio_path).stem}({counter}).txt"
+        counter += 1
+
     with open(output_path, "w", encoding ="utf-8") as datei:
         datei.write(transcript)
 
