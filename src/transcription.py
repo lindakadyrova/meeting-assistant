@@ -9,23 +9,27 @@ def transcribe_audio(audio_path: str) -> str:
     segments = result[0]
     info = result[1]
 
-    transcript = " ".join(segment.text.strip() for segment in segments)
+    transcript = "\n".join(segment.text.strip() for segment in segments)
 
     print(f"Erkannte Sprache: {info.language}")
 
 
-    output_dir = Path("data/transcripts")
-    output_dir.mkdir(parents=True, exist_ok=True)
-
-    base_path = output_dir / f"{Path(audio_path).stem}.txt"
-    output_path = base_path
-
-    counter = 1
-    while output_path.exists():
-        output_path= output_dir / f"{Path(audio_path).stem}({counter}).txt"
-        counter += 1
-
-    with open(output_path, "w", encoding ="utf-8") as datei:
-        datei.write(transcript)
-
+  
     return transcript
+
+def save_transcript(transcript: str, audio_path: str) ->str:
+      output_dir = Path("data/transcripts")
+      output_dir.mkdir(parents=True, exist_ok=True)
+    
+      base_path = output_dir / f"{Path(audio_path).stem}.txt"
+      output_path = base_path
+    
+      counter = 1
+      while output_path.exists():
+            output_path= output_dir / f"{Path(audio_path).stem}({counter}).txt"
+            counter += 1
+    
+      with open(output_path, "w", encoding ="utf-8") as datei:
+            datei.write(transcript)
+    
+      return str(output_path)
