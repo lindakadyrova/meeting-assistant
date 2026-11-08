@@ -1,4 +1,5 @@
 from faster_whisper import WhisperModel
+from pathlib import Path
 
 def transcribe_audio(audio_path: str) -> str:
     model = WhisperModel("base", device="cpu", compute_type="int8")
@@ -11,5 +12,13 @@ def transcribe_audio(audio_path: str) -> str:
     transcript = " ".join(segment.text.strip() for segment in segments)
 
     print(f"Erkannte Sprache: {info.language}")
+
+
+    output_dir = Path("data/transcripts")
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    output_path = output_dir / f"{Path(audio_path).stem}.txt"
+    with open(output_path, "w", encoding ="utf-8") as datei:
+        datei.write(transcript)
 
     return transcript
