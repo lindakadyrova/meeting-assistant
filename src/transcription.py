@@ -2,6 +2,8 @@ from faster_whisper import WhisperModel
 from pathlib import Path
 
 def transcribe_audio(audio_path: str) -> str:
+    if not Path(audio_path).exists():
+          raise FileNotFoundError(f"Audiodatei nciht gefunden: {audio_path}")
     model = WhisperModel("base", device="cpu", compute_type="int8")
 
     result = model.transcribe(audio_path, language="de")
