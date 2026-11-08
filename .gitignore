@@ -34,3 +34,4 @@ Thumbs.db
 # Local data (potentially sensitive)
 data/audio/
 data/private/
+data/transcripts/
