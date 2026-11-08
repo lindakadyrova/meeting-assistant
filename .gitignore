@@ -21,6 +21,7 @@ __pycache__/
 .pytest_cache/
 .coverage
 htmlcov/
+test_output/
 
 # Build files
 build/
