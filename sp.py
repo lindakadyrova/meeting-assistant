@@ -27,5 +27,19 @@ matcher.add("TO_GO", [[
 
 for match_id, start, end in matcher(doc):
     span = doc[start:end]
-    print(span.sent.text)
+    sentence = span.sent
 
+    print("\nGefundener Satz:", sentence.text)
+
+    for token in sentence:
+        if token.pos_ == "PRON" and token.dep_ == "dobj":
+
+            index = sents.index(sentence)
+
+            if index > 0:
+                previous_sentence = sents[index - 1]
+                print("Vorheriger Satz:", previous_sentence.text)
+
+    for word in sentence:
+        if word.ent_type_ == "DATE":
+            print("Deadline:", word.text)
